@@ -11,7 +11,7 @@ public class FlightTest {
     @Before
     public void before(){
         passenger1 = new Passenger("Striker", 10);
-        plane = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES);
+        plane = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES, 2);
         plane.addPassenger(passenger1);
         flight = new Flight(1, DestinationType.NEWYORK);
     }

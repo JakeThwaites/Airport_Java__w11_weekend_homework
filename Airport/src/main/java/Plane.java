@@ -4,11 +4,13 @@ public class Plane {
     private AirlineType airline;
     private PlaneType type;
     private ArrayList<Passenger> passengers;
+    private Integer maxPassengers;
 
-    public Plane(PlaneType type, AirlineType airline){
+    public Plane(PlaneType type, AirlineType airline, Integer maxPassengers){
         this.airline = airline;
         this.type = type;
         this.passengers = new ArrayList<>();
+        this.maxPassengers = maxPassengers;
     }
 
     public AirlineType getAirline(){
@@ -23,7 +25,15 @@ public class Plane {
         return passengers;
     }
 
+    public int getMaxPassengers(){
+        return maxPassengers;
+    }
+
     public void addPassenger(Passenger passenger){
         passengers.add(passenger);
+    }
+
+    public boolean hasEmptySeats(){
+        return maxPassengers > passengers.size();
     }
 }

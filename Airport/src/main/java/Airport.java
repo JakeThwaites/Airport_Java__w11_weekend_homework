@@ -41,8 +41,14 @@ public class Airport {
     }
 
     public void sellTicket(Passenger passenger, Flight flight){
-        passenger.buyTicket();
-        flight.getPlane().addPassenger(passenger);
+        if (flight.getPlane().hasEmptySeats()){
+            passenger.buyTicket();
+            flight.getPlane().addPassenger(passenger);
+        }
+    }
+
+    public int totalPassengersOnFlight(Flight flight){
+        return flight.getPlane().getPassengers().size();
     }
 }
 

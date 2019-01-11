@@ -14,7 +14,7 @@ public class AirportTest {
     @Before
     public void before(){
         passenger1 = new Passenger("Striker", 10);
-        plane1 = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES);
+        plane1 = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES, 2);
         flight1 = new Flight(1, DestinationType.BARCELONA);
         airport = new Airport(AirportCodeType.EDI);
     }
@@ -89,4 +89,21 @@ public class AirportTest {
         assertEquals(1, flightPassengers.size());
     }
 
+    @Test
+    public void canShowTicketPassengersOnFlight(){
+        flight1.addPlane(plane1);
+        airport.sellTicket(passenger1, flight1);
+        assertEquals(1, airport.totalPassengersOnFlight(flight1));
+    }
+
+    @Test
+    public void onlySellsTicketIfRoomOnFlight(){
+        airport.addPlaneToFlight(flight1, plane1);
+        airport.sellTicket(passenger1, flight1);
+        airport.sellTicket(passenger1, flight1);
+        assertEquals(2, airport.totalPassengersOnFlight(flight1));
+        airport.sellTicket(passenger1, flight1);
+        assertEquals(2, airport.totalPassengersOnFlight(flight1));
+
+    }
 }
