@@ -51,5 +51,24 @@ public class Airport {
         int totalPassengers = flight.getPlane().getPassengers().size();
         return totalPassengers;
     }
+
+    public Plane findBestPlane(Flight flight){
+        Plane bestPlane = hangar.get(0);
+        for (Plane plane : hangar) {
+            if (differenceBetweenNumbers(plane.differenceFromRequiredPassengers(flight), bestPlane.differenceFromRequiredPassengers(flight))
+                    < bestPlane.differenceFromRequiredPassengers(flight)) {
+                bestPlane = plane;
+            }
+        }
+        return bestPlane;
+    }
+
+    public int differenceBetweenNumbers(int number1, int number2) {
+        int x = number1 - number2;
+        int y = number2 - number1;
+        int difference = Math.abs(x * y);
+
+        return difference;
+    }
 }
 

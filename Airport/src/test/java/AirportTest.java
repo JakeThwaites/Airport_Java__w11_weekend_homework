@@ -8,14 +8,20 @@ import static org.junit.Assert.assertEquals;
 public class AirportTest {
     private Passenger passenger1;
     private Plane plane1;
+    private Plane plane2;
+    private Plane plane3;
     private Flight flight1;
+    private Flight flight2;
     private Airport airport;
 
     @Before
     public void before(){
         passenger1 = new Passenger("Striker", 10);
         plane1 = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES, 2);
+        plane2 = new Plane(PlaneType.MAGICCARPET, AirlineType.EASYJET, 10);
+        plane3 = new Plane(PlaneType.MILLENIUMFALCON, AirlineType.EASYJET, 13);
         flight1 = new Flight(1, DestinationType.BARCELONA, 2);
+        flight2 = new Flight(2, DestinationType.NEWYORK, 11);
         airport = new Airport(AirportCodeType.EDI);
     }
 
@@ -108,6 +114,10 @@ public class AirportTest {
 
     @Test
     public void canFindPlaneWithClosestPassengersToFlight(){
+        airport.addPlaneToHangar(plane1);
+        airport.addPlaneToHangar(plane2);
+        airport.addPlaneToHangar(plane3);
+        Plane bestPlane = airport.findBestPlane(flight2);
 
     }
 }

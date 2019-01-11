@@ -36,4 +36,13 @@ public class Plane {
     public boolean hasEmptySeats(){
         return maxPassengers > passengers.size();
     }
+
+    public int differenceFromRequiredPassengers(Flight flight) {
+        if (maxPassengers > flight.getRequiredPassengers()) {
+            return maxPassengers - flight.getRequiredPassengers();
+        }
+        else {
+            return flight.getRequiredPassengers() - maxPassengers;
+        }
+    }
 }
