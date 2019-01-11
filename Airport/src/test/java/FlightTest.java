@@ -10,7 +10,7 @@ public class FlightTest {
 
     @Before
     public void before(){
-        passenger1 = new Passenger("Striker");
+        passenger1 = new Passenger("Striker", 10);
         plane = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES);
         plane.addPassenger(passenger1);
         flight = new Flight(1, DestinationType.NEWYORK);
@@ -37,4 +37,5 @@ public class FlightTest {
         flight.addPlane(plane);
         assertEquals(plane, flight.getPlane());
     }
+
 }

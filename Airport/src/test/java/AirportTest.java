@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class AirportTest {
@@ -11,9 +13,8 @@ public class AirportTest {
 
     @Before
     public void before(){
-        passenger1 = new Passenger("Striker");
+        passenger1 = new Passenger("Striker", 10);
         plane1 = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES);
-        plane1.addPassenger(passenger1);
         flight1 = new Flight(1, DestinationType.BARCELONA);
         airport = new Airport(AirportCodeType.EDI);
     }
@@ -61,6 +62,31 @@ public class AirportTest {
         assertEquals(0, airport.getFlights().size());
         airport.createFlight(2, DestinationType.NEWYORK);
         assertEquals(1, airport.getFlights().size());
+    }
+
+    @Test
+    public void canAddPlaneToFlight(){
+        airport.createFlight(2, DestinationType.BARCELONA);
+        Flight newFlight = airport.getFlights().get(0);
+        airport.addPlaneToFlight(newFlight, plane1);
+        assertEquals(plane1, newFlight.getPlane());
+    }
+
+    @Test
+    public void sellingTicketReducesPassengerMoney(){
+        assertEquals(10, passenger1.getMoney());
+        flight1.addPlane(plane1);
+        airport.sellTicket(passenger1, flight1);
+        assertEquals(5, passenger1.getMoney());
+    }
+
+    @Test
+    public void sellingTicketAddsPassengerToFlight(){
+        flight1.addPlane(plane1);
+        ArrayList<Passenger> flightPassengers = flight1.getPlane().getPassengers();
+        assertEquals(0, flightPassengers.size());
+        airport.sellTicket(passenger1, flight1);
+        assertEquals(1, flightPassengers.size());
     }
 
 }

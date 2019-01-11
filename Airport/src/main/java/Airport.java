@@ -35,5 +35,14 @@ public class Airport {
         Flight newFlight = new Flight(flightNumber, destination);
         flights.add(newFlight);
     }
+
+    public void addPlaneToFlight(Flight flight, Plane plane){
+        flight.addPlane(plane);
+    }
+
+    public void sellTicket(Passenger passenger, Flight flight){
+        passenger.buyTicket();
+        flight.getPlane().addPassenger(passenger);
+    }
 }
 

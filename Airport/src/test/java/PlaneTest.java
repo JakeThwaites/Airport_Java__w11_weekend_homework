@@ -9,7 +9,7 @@ public class PlaneTest {
 
     @Before
     public void before(){
-        passenger1 = new Passenger("Striker");
+        passenger1 = new Passenger("Striker", 10);
         plane = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES);
     }
 

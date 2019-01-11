@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Flight {
     private Integer flightNumber;
     private DestinationType destination;
@@ -24,4 +26,5 @@ public class Flight {
     public void addPlane(Plane plane){
         this.plane = plane;
     }
+
 }
