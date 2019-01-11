@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class AirportTest {
     private Passenger passenger1;
+    private Passenger passenger2;
     private Plane plane1;
     private Plane plane2;
     private Plane plane3;
@@ -17,6 +18,7 @@ public class AirportTest {
     @Before
     public void before(){
         passenger1 = new Passenger("Striker", 10);
+        passenger2 = new Passenger("Jake", 20);
         plane1 = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES, 2);
         plane2 = new Plane(PlaneType.MAGICCARPET, AirlineType.EASYJET, 10);
         plane3 = new Plane(PlaneType.MILLENIUMFALCON, AirlineType.EASYJET, 13);
@@ -74,8 +76,28 @@ public class AirportTest {
     public void canAddPlaneToFlight(){
         airport.createFlight(2, DestinationType.BARCELONA);
         Flight newFlight = airport.getFlights().get(0);
+        airport.addPlaneToHangar(plane1);
         airport.addPlaneToFlight(newFlight, plane1);
         assertEquals(plane1, newFlight.getPlane());
+    }
+
+    @Test
+    public void assigningPlaneToFlightRemovesPlaneFromHangar(){
+        airport.createFlight(2, DestinationType.BARCELONA);
+        airport.addPlaneToHangar(plane1);
+        Flight newFlight = airport.getFlights().get(0);
+        assertEquals(1, airport.getHangar().size());
+        airport.addPlaneToFlight(newFlight, plane1);
+        assertEquals(0, airport.getHangar().size());
+    }
+
+    @Test
+    public void canOnlyAssignPlaneToFlightIfPlaneInHangar(){
+        airport.createFlight(2, DestinationType.BARCELONA);
+        Flight newFlight = airport.getFlights().get(0);
+        assertEquals(null, newFlight.getPlane() );
+        airport.addPlaneToFlight(newFlight, plane3);
+        assertEquals(null, newFlight.getPlane() );
     }
 
     @Test
@@ -104,9 +126,10 @@ public class AirportTest {
 
     @Test
     public void onlySellsTicketIfRoomOnFlight(){
+        airport.addPlaneToHangar(plane1);
         airport.addPlaneToFlight(flight1, plane1);
         airport.sellTicket(passenger1, flight1);
-        airport.sellTicket(passenger1, flight1);
+        airport.sellTicket(passenger2, flight1);
         assertEquals(2, airport.totalPassengersOnFlight(flight1));
         airport.sellTicket(passenger1, flight1);
         assertEquals(2, airport.totalPassengersOnFlight(flight1));

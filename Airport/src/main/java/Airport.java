@@ -21,6 +21,7 @@ public class Airport {
 
     public void addPlaneToHangar(Plane plane){
         hangar.add(plane);
+        plane.enterHangar();
     }
 
     public ArrayList<Flight> getFlights(){
@@ -37,7 +38,11 @@ public class Airport {
     }
 
     public void addPlaneToFlight(Flight flight, Plane plane){
-        flight.addPlane(plane);
+        if (plane.inHangar()){
+            flight.addPlane(plane);
+            hangar.remove(plane);
+            plane.leaveHangar();
+        }
     }
 
     public void sellTicket(Passenger passenger, Flight flight){

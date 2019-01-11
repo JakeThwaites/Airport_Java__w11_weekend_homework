@@ -5,12 +5,14 @@ public class Plane {
     private PlaneType type;
     private ArrayList<Passenger> passengers;
     private Integer maxPassengers;
+    private Boolean inHangar;
 
     public Plane(PlaneType type, AirlineType airline, Integer maxPassengers){
         this.airline = airline;
         this.type = type;
         this.passengers = new ArrayList<>();
         this.maxPassengers = maxPassengers;
+        this.inHangar = false;
     }
 
     public AirlineType getAirline(){
@@ -29,6 +31,10 @@ public class Plane {
         return maxPassengers;
     }
 
+    public boolean inHangar(){
+        return inHangar;
+    }
+
     public void addPassenger(Passenger passenger){
         passengers.add(passenger);
     }
@@ -44,5 +50,13 @@ public class Plane {
         else {
             return flight.getRequiredPassengers() - maxPassengers;
         }
+    }
+
+    public void enterHangar(){
+        inHangar = true;
+    }
+
+    public void leaveHangar(){
+        inHangar = false;
     }
 }
