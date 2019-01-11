@@ -15,7 +15,7 @@ public class AirportTest {
     public void before(){
         passenger1 = new Passenger("Striker", 10);
         plane1 = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES, 2);
-        flight1 = new Flight(1, DestinationType.BARCELONA);
+        flight1 = new Flight(1, DestinationType.BARCELONA, 2);
         airport = new Airport(AirportCodeType.EDI);
     }
 
@@ -104,6 +104,10 @@ public class AirportTest {
         assertEquals(2, airport.totalPassengersOnFlight(flight1));
         airport.sellTicket(passenger1, flight1);
         assertEquals(2, airport.totalPassengersOnFlight(flight1));
+    }
+
+    @Test
+    public void canFindPlaneWithClosestPassengersToFlight(){
 
     }
 }

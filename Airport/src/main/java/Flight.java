@@ -4,11 +4,13 @@ public class Flight {
     private Integer flightNumber;
     private DestinationType destination;
     private Plane plane;
+    private Integer requiredPassengers;
 
-    public Flight(Integer flightNumber, DestinationType destination){
+    public Flight(Integer flightNumber, DestinationType destination, Integer requiredPassengers){
         this.plane = null;
         this.flightNumber = flightNumber;
         this.destination = destination;
+        this.requiredPassengers = requiredPassengers;
     }
 
     public Plane getPlane(){
@@ -21,6 +23,10 @@ public class Flight {
 
     public DestinationType getDestination(){
         return destination;
+    }
+
+    public int getRequiredPassengers(){
+        return requiredPassengers;
     }
 
     public void addPlane(Plane plane){

@@ -32,7 +32,7 @@ public class Airport {
     }
 
     public void createFlight(Integer flightNumber, DestinationType destination){
-        Flight newFlight = new Flight(flightNumber, destination);
+        Flight newFlight = new Flight(flightNumber, destination, 2);
         flights.add(newFlight);
     }
 
@@ -48,7 +48,8 @@ public class Airport {
     }
 
     public int totalPassengersOnFlight(Flight flight){
-        return flight.getPlane().getPassengers().size();
+        int totalPassengers = flight.getPlane().getPassengers().size();
+        return totalPassengers;
     }
 }
 
