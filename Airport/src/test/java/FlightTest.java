@@ -13,12 +13,12 @@ public class FlightTest {
         passenger1 = new Passenger("Striker", 10);
         plane = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES, 2);
         plane.addPassenger(passenger1);
-        flight = new Flight(1, DestinationType.NEWYORK, 2);
+        flight = new Flight(DestinationType.NEWYORK, 2);
     }
 
     @Test
     public void hasFlightNumber(){
-        assertEquals(1, flight.getFlightNumber());
+        assertEquals(0, flight.getFlightNumber());
     }
 
     @Test
@@ -41,6 +41,12 @@ public class FlightTest {
     @Test
     public void hasRequiredPassengersNumber(){
         assertEquals(2, flight.getRequiredPassengers());
+    }
+
+    @Test
+    public void canSetFlightNumber(){
+        flight.setFlightNumber(1);
+        assertEquals(1, flight.getFlightNumber());
     }
 
 }

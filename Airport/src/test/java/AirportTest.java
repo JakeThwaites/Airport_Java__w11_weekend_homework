@@ -1,5 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
+import sun.security.krb5.internal.crypto.Des;
 
 import java.util.ArrayList;
 
@@ -22,8 +23,8 @@ public class AirportTest {
         plane1 = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES, 2);
         plane2 = new Plane(PlaneType.MAGICCARPET, AirlineType.EASYJET, 10);
         plane3 = new Plane(PlaneType.MILLENIUMFALCON, AirlineType.EASYJET, 13);
-        flight1 = new Flight(1, DestinationType.BARCELONA, 2);
-        flight2 = new Flight(2, DestinationType.NEWYORK, 11);
+        flight1 = new Flight(DestinationType.BARCELONA, 2);
+        flight2 = new Flight(DestinationType.NEWYORK, 11);
         airport = new Airport(AirportCodeType.EDI);
     }
 
@@ -59,22 +60,22 @@ public class AirportTest {
     @Test
     public void canCreateFlight(){
         assertEquals(0, airport.getFlights().size());
-        airport.createFlight(2, DestinationType.NEWYORK);
+        airport.createFlight(DestinationType.NEWYORK, 2);
         Flight newFlight = airport.getFlights().get(0);
         assertEquals(newFlight.getDestination(), DestinationType.NEWYORK);
-        assertEquals(newFlight.getFlightNumber(), 2);
+        assertEquals(newFlight.getRequiredPassengers(), 2);
     }
 
     @Test
     public void creatingFlightAddsToFlightList(){
         assertEquals(0, airport.getFlights().size());
-        airport.createFlight(2, DestinationType.NEWYORK);
+        airport.createFlight(DestinationType.NEWYORK, 2);
         assertEquals(1, airport.getFlights().size());
     }
 
     @Test
     public void canAddPlaneToFlight(){
-        airport.createFlight(2, DestinationType.BARCELONA);
+        airport.createFlight(DestinationType.BARCELONA, 2);
         Flight newFlight = airport.getFlights().get(0);
         airport.addPlaneToHangar(plane1);
         airport.addPlaneToFlight(newFlight, plane1);
@@ -83,7 +84,7 @@ public class AirportTest {
 
     @Test
     public void assigningPlaneToFlightRemovesPlaneFromHangar(){
-        airport.createFlight(2, DestinationType.BARCELONA);
+        airport.createFlight(DestinationType.BARCELONA, 2);
         airport.addPlaneToHangar(plane1);
         Flight newFlight = airport.getFlights().get(0);
         assertEquals(1, airport.getHangar().size());
@@ -93,7 +94,7 @@ public class AirportTest {
 
     @Test
     public void canOnlyAssignPlaneToFlightIfPlaneInHangar(){
-        airport.createFlight(2, DestinationType.BARCELONA);
+        airport.createFlight(DestinationType.BARCELONA, 2);
         Flight newFlight = airport.getFlights().get(0);
         assertEquals(null, newFlight.getPlane() );
         airport.addPlaneToFlight(newFlight, plane3);
@@ -104,6 +105,7 @@ public class AirportTest {
     public void sellingTicketReducesPassengerMoney(){
         assertEquals(10, passenger1.getMoney());
         flight1.addPlane(plane1);
+        airport.addPassenger(passenger1);
         airport.sellTicket(passenger1, flight1);
         assertEquals(5, passenger1.getMoney());
     }
@@ -111,6 +113,7 @@ public class AirportTest {
     @Test
     public void sellingTicketAddsPassengerToFlight(){
         flight1.addPlane(plane1);
+        airport.addPassenger(passenger1);
         ArrayList<Passenger> flightPassengers = flight1.getPlane().getPassengers();
         assertEquals(0, flightPassengers.size());
         airport.sellTicket(passenger1, flight1);
@@ -120,6 +123,7 @@ public class AirportTest {
     @Test
     public void canShowTicketPassengersOnFlight(){
         flight1.addPlane(plane1);
+        airport.addPassenger(passenger1);
         airport.sellTicket(passenger1, flight1);
         assertEquals(1, airport.totalPassengersOnFlight(flight1));
     }
@@ -128,6 +132,8 @@ public class AirportTest {
     public void onlySellsTicketIfRoomOnFlight(){
         airport.addPlaneToHangar(plane1);
         airport.addPlaneToFlight(flight1, plane1);
+        airport.addPassenger(passenger1);
+        airport.addPassenger(passenger2);
         airport.sellTicket(passenger1, flight1);
         airport.sellTicket(passenger2, flight1);
         assertEquals(2, airport.totalPassengersOnFlight(flight1));
@@ -153,5 +159,22 @@ public class AirportTest {
         assertEquals(0, airport.getPassengers().size());
         airport.addPassenger(passenger1);
         assertEquals(1, airport.getPassengers().size());
+    }
+
+    @Test
+    public void canFindASpecificPassengerInAirport(){
+        airport.addPassenger(passenger1);
+        airport.addPassenger(passenger2);
+        assertEquals(passenger2, airport.findPassengerByName("Jake"));
+    }
+
+    @Test
+    public void creatingFlightSetsIncrementalFlightNumber(){
+        airport.createFlight(DestinationType.NEWYORK, 3);
+        airport.createFlight(DestinationType.NEWYORK, 3);
+        Flight flight1 = airport.getFlights().get(0);
+        Flight flight2 = airport.getFlights().get(1);
+        assertEquals(flight1.getFlightNumber(), 1);
+        assertEquals(flight2.getFlightNumber(), 2);
     }
 }

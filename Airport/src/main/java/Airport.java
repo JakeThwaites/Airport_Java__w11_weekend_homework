@@ -1,16 +1,19 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Airport {
     private ArrayList<Plane> hangar;
     private AirportCodeType airportCode;
     private ArrayList<Flight> flights;
     private ArrayList<Passenger> passengers;
+    private Integer latestFlightNumber;
 
     public Airport(AirportCodeType airportCode){
         this.airportCode = airportCode;
         this.hangar = new ArrayList<>();
         this.flights = new ArrayList<>();
         this.passengers = new ArrayList<>();
+        this.latestFlightNumber = 0;
     }
 
     public AirportCodeType getAirportCode(){
@@ -42,9 +45,11 @@ public class Airport {
         flights.add(flight);
     }
 
-    public void createFlight(Integer flightNumber, DestinationType destination){
-        Flight newFlight = new Flight(flightNumber, destination, 2);
+    public void createFlight(DestinationType destination, Integer requiredPassengers){
+        Flight newFlight = new Flight(destination, requiredPassengers);
         flights.add(newFlight);
+        latestFlightNumber += 1;
+        newFlight.setFlightNumber(latestFlightNumber);
     }
 
     public void addPlaneToFlight(Flight flight, Plane plane){
@@ -56,7 +61,7 @@ public class Airport {
     }
 
     public void sellTicket(Passenger passenger, Flight flight){
-        if (flight.getPlane().hasEmptySeats()){
+        if (flight.getPlane().hasEmptySeats() && passengers.contains(passenger)){
             passenger.buyTicket();
             flight.getPlane().addPassenger(passenger);
         }
@@ -91,6 +96,17 @@ public class Airport {
         int difference = Math.abs(x * y);
 
         return difference;
+    }
+
+    public Passenger findPassengerByName(String passengerName){
+//        Collections.sort(passengers, String.CASE_INSENSITIVE_ORDER);
+
+        for (Passenger passenger : passengers){
+            if (passenger.getName() == passengerName) {
+                return passenger;
+            }
+        }
+        return null;
     }
 
 

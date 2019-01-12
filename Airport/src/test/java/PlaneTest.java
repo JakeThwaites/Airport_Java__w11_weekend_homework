@@ -15,8 +15,8 @@ public class PlaneTest {
         passenger1 = new Passenger("Striker", 10);
         passenger2 = new Passenger("Jake", 10);
         plane = new Plane(PlaneType.SPITFIRE, AirlineType.EMIRATES, 2);
-        flight1 = new Flight(1, DestinationType.NEWYORK, 1);
-        flight2 = new Flight(2, DestinationType.NEWYORK, 4);
+        flight1 = new Flight(DestinationType.NEWYORK, 1);
+        flight2 = new Flight(DestinationType.NEWYORK, 4);
     }
 
     @Test

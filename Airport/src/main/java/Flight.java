@@ -6,9 +6,9 @@ public class Flight {
     private Plane plane;
     private Integer requiredPassengers;
 
-    public Flight(Integer flightNumber, DestinationType destination, Integer requiredPassengers){
+    public Flight(DestinationType destination, Integer requiredPassengers){
         this.plane = null;
-        this.flightNumber = flightNumber;
+        this.flightNumber = 0;
         this.destination = destination;
         this.requiredPassengers = requiredPassengers;
     }
@@ -31,6 +31,10 @@ public class Flight {
 
     public void addPlane(Plane plane){
         this.plane = plane;
+    }
+
+    public void setFlightNumber(int newFlightNumber){
+        flightNumber = newFlightNumber;
     }
 
 }
