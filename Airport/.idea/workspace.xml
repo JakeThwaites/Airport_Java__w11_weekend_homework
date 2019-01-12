@@ -476,7 +476,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547286006636" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547286500161" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -490,7 +490,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AirportTest">
+  <component name="RunManager" selected="JUnit.AirportTest.canAddPassengers">
     <configuration name="AirportTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Airport_test" />
       <option name="PACKAGE_NAME" value="" />
@@ -499,11 +499,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AirportTest.assigningPlaneToFlightRemovesPlaneFromHangar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AirportTest.canAddPassengers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Airport_test" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="AirportTest" />
-      <option name="METHOD_NAME" value="assigningPlaneToFlightRemovesPlaneFromHangar" />
+      <option name="METHOD_NAME" value="canAddPassengers" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -529,28 +529,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlaneTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AirportTest.startsWithNoPassengersInAirport" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Airport_test" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="PlaneTest" />
+      <option name="MAIN_CLASS_NAME" value="AirportTest" />
+      <option name="METHOD_NAME" value="startsWithNoPassengersInAirport" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="JUnit.AirportTest" />
-      <item itemvalue="JUnit.PlaneTest" />
-      <item itemvalue="JUnit.AirportTest.assigningPlaneToFlightRemovesPlaneFromHangar" />
       <item itemvalue="JUnit.AirportTest.canOnlyAssignPlaneToFlightIfPlaneInHangar" />
       <item itemvalue="JUnit.AirportTest.onlySellsTicketIfRoomOnFlight" />
+      <item itemvalue="JUnit.AirportTest.startsWithNoPassengersInAirport" />
+      <item itemvalue="JUnit.AirportTest.canAddPassengers" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AirportTest.canAddPassengers" />
+        <item itemvalue="JUnit.AirportTest.startsWithNoPassengersInAirport" />
         <item itemvalue="JUnit.AirportTest" />
         <item itemvalue="JUnit.AirportTest.onlySellsTicketIfRoomOnFlight" />
         <item itemvalue="JUnit.AirportTest.canOnlyAssignPlaneToFlightIfPlaneInHangar" />
-        <item itemvalue="JUnit.AirportTest.assigningPlaneToFlightRemovesPlaneFromHangar" />
-        <item itemvalue="JUnit.PlaneTest" />
       </list>
     </recent_temporary>
   </component>

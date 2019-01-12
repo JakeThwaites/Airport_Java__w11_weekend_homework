@@ -4,11 +4,13 @@ public class Airport {
     private ArrayList<Plane> hangar;
     private AirportCodeType airportCode;
     private ArrayList<Flight> flights;
+    private ArrayList<Passenger> passengers;
 
     public Airport(AirportCodeType airportCode){
         this.airportCode = airportCode;
         this.hangar = new ArrayList<>();
         this.flights = new ArrayList<>();
+        this.passengers = new ArrayList<>();
     }
 
     public AirportCodeType getAirportCode(){
@@ -17,6 +19,14 @@ public class Airport {
 
     public ArrayList<Plane> getHangar(){
         return hangar;
+    }
+
+    public ArrayList<Passenger> getPassengers(){
+        return passengers;
+    }
+
+    public void addPassenger(Passenger passenger){
+        passengers.add(passenger);
     }
 
     public void addPlaneToHangar(Plane plane){

@@ -147,4 +147,11 @@ public class AirportTest {
     public void startsWithNoPassengersInAirport(){
         assertEquals(0, airport.getPassengers().size());
     }
+
+    @Test
+    public void canAddPassengers(){
+        assertEquals(0, airport.getPassengers().size());
+        airport.addPassenger(passenger1);
+        assertEquals(1, airport.getPassengers().size());
+    }
 }
