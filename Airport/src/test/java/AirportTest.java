@@ -141,6 +141,10 @@ public class AirportTest {
         airport.addPlaneToHangar(plane2);
         airport.addPlaneToHangar(plane3);
         Plane bestPlane = airport.findBestPlane(flight2);
+    }
 
+    @Test
+    public void startsWithNoPassengersInAirport(){
+        assertEquals(0, airport.getPassengers().size());
     }
 }

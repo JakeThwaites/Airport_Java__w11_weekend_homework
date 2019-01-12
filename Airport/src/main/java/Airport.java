@@ -60,8 +60,15 @@ public class Airport {
     public Plane findBestPlane(Flight flight){
         Plane bestPlane = hangar.get(0);
         for (Plane plane : hangar) {
-            if (differenceBetweenNumbers(plane.differenceFromRequiredPassengers(flight), bestPlane.differenceFromRequiredPassengers(flight))
-                    < bestPlane.differenceFromRequiredPassengers(flight)) {
+            int planeComparison = plane.differenceFromRequiredPassengers(flight);
+            int bestPlaneComparison = bestPlane.differenceFromRequiredPassengers(flight);
+            int thisPlaneDifference = differenceBetweenNumbers(planeComparison, bestPlaneComparison);
+            int bestPlaneDifference = bestPlane.differenceFromRequiredPassengers(flight);
+
+            if (planeComparison == 0){
+                return plane;
+            }
+            else if (thisPlaneDifference < bestPlaneDifference) {
                 bestPlane = plane;
             }
         }
@@ -75,5 +82,7 @@ public class Airport {
 
         return difference;
     }
+
+
 }
 
