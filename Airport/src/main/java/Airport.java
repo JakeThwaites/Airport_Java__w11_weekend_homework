@@ -78,12 +78,11 @@ public class Airport {
             int planeComparison = plane.differenceFromRequiredPassengers(flight);
             int bestPlaneComparison = bestPlane.differenceFromRequiredPassengers(flight);
             int thisPlaneDifference = differenceBetweenNumbers(planeComparison, bestPlaneComparison);
-            int bestPlaneDifference = bestPlane.differenceFromRequiredPassengers(flight);
 
             if (planeComparison == 0){
                 return plane;
             }
-            else if (thisPlaneDifference < bestPlaneDifference) {
+            else if (thisPlaneDifference < bestPlaneComparison) {
                 bestPlane = plane;
             }
         }
@@ -99,7 +98,6 @@ public class Airport {
     }
 
     public Passenger findPassengerByName(String passengerName){
-//        Collections.sort(passengers, String.CASE_INSENSITIVE_ORDER);
 
         for (Passenger passenger : passengers){
             if (passenger.getName() == passengerName) {
