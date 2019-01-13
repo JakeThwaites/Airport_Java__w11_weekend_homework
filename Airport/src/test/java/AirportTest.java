@@ -78,7 +78,7 @@ public class AirportTest {
         airport.createFlight(DestinationType.BARCELONA, 2);
         Flight newFlight = airport.getFlights().get(0);
         airport.addPlaneToHangar(plane1);
-        airport.addPlaneToFlight(newFlight, plane1);
+        airport.addPlaneToFlight(newFlight);
         assertEquals(plane1, newFlight.getPlane());
     }
 
@@ -88,7 +88,7 @@ public class AirportTest {
         airport.addPlaneToHangar(plane1);
         Flight newFlight = airport.getFlights().get(0);
         assertEquals(1, airport.getHangar().size());
-        airport.addPlaneToFlight(newFlight, plane1);
+        airport.addPlaneToFlight(newFlight);
         assertEquals(0, airport.getHangar().size());
     }
 
@@ -97,7 +97,7 @@ public class AirportTest {
         airport.createFlight(DestinationType.BARCELONA, 2);
         Flight newFlight = airport.getFlights().get(0);
         assertEquals(null, newFlight.getPlane() );
-        airport.addPlaneToFlight(newFlight, plane3);
+        airport.addPlaneToFlight(newFlight);
         assertEquals(null, newFlight.getPlane() );
     }
 
@@ -131,7 +131,7 @@ public class AirportTest {
     @Test
     public void onlySellsTicketIfRoomOnFlight(){
         airport.addPlaneToHangar(plane1);
-        airport.addPlaneToFlight(flight1, plane1);
+        airport.addPlaneToFlight(flight1);
         airport.addPassenger(passenger1);
         airport.addPassenger(passenger2);
         airport.sellTicket(passenger1, flight1);

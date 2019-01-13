@@ -52,12 +52,14 @@ public class Airport {
         newFlight.setFlightNumber(latestFlightNumber);
     }
 
-    public void addPlaneToFlight(Flight flight, Plane plane){
-        if (plane.inHangar()){
+    public void addPlaneToFlight(Flight flight){
+        if (hangar.size() > 0) {
+            Plane plane = findBestPlane(flight);
             flight.addPlane(plane);
             hangar.remove(plane);
             plane.leaveHangar();
         }
+
     }
 
     public void sellTicket(Passenger passenger, Flight flight){
